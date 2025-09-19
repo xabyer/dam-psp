@@ -1,6 +1,11 @@
 package com.github.xabyer.dam.psp;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
 //import java.nio.file.Files;
 //import java.nio.file.Path;
 
@@ -50,7 +55,7 @@ public class Main {
     private static void createNslookupProcess(File standardInputFile/*, File standardOuputFile*/) throws IOException, InterruptedException {
         ProcessBuilder nslookupProcessBuilder = new ProcessBuilder("nslookup");
         nslookupProcessBuilder.redirectInput(standardInputFile);
-        nslookupProcessBuilder.redirectOutput(ProcessBuilder.Redirect.appendTo(new File("standardOutput.txt")));
+        nslookupProcessBuilder.redirectOutput(ProcessBuilder.Redirect.to(new File("standardOutput.txt")));
         nslookupProcessBuilder.redirectError(ProcessBuilder.Redirect.INHERIT);
 
         Process nslookupProcess = nslookupProcessBuilder.start();
@@ -59,13 +64,39 @@ public class Main {
     }
 
     private static File writeTextToFile() throws IOException {
-        File textFile = new File("text.txt");
-        PrintWriter textToWrite = new PrintWriter(new BufferedWriter(new FileWriter(textFile)), true);
+        // 1. Crear el fichero
+        Path path = Path.of("text.txt");
+        if(Files.notExists(path)){
+            Files.createFile(path);
 
-        textToWrite.println("www.google.es");
-        textToWrite.println("www.ieschirinos.com");
-        textToWrite.println("exit");
+        }
+        //File textFile = path.toFile();
 
-        return textFile;
+        // 2. Escribir solo si esta vacío
+
+        if(Files.size(path) == 0){
+            /*
+            PrintWriter textToWrite = new PrintWriter(new BufferedWriter(new FileWriter(textFile)), true);
+
+            textToWrite.println("www.google.es");
+            textToWrite.println("www.ieschirinos.com");
+            textToWrite.println("exit");
+            */
+            List<String> lines = List.of(
+                    "www.google.es",
+                    "www.ieschirinos.com",
+                    "exit"
+            );
+            Files.write(
+                    path,
+                    lines,
+                    StandardCharsets.UTF_8,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.TRUNCATE_EXISTING
+            );
+        }
+
+//        return textFile;
+        return path.toFile();
     }
 }

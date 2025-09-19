@@ -5,7 +5,7 @@ Address:  192.168.1.1
 Address:  192.168.1.1
 
 Nombre:  www.google.es
-Addresses:  2a00:1450:4009:c17::5e
+Addresses:  2a00:1450:4009:c08::5e
 	  142.250.201.67
 
 > Servidor:  UnKnown
