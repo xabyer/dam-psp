@@ -1,0 +1,19 @@
+Servidor predeterminado:  UnKnown
+Address:  192.168.1.1
+
+> Servidor:  UnKnown
+Address:  192.168.1.1
+
+Nombre:  www.google.es
+Addresses:  2a00:1450:4009:c17::5e
+	  142.250.201.67
+
+> Servidor:  UnKnown
+Address:  192.168.1.1
+
+Nombre:  ieschirinos.com
+Addresses:  2a12:d280:100:8::
+	  178.211.133.8
+Aliases:  www.ieschirinos.com
+
+> 
