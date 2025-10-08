@@ -38,7 +38,6 @@ private void startPipeLineProcessBuilder() throws IOException {
         }
     }
 
-
 }
 
 private String workingDirectory() {
