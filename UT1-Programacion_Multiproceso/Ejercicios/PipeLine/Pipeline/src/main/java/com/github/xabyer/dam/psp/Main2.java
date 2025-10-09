@@ -29,7 +29,7 @@ void main() {
 
         //Heredar salida estándar manualmente en el caso de no tratarse de win 11 y tener diferente charset cmd e IJ.
         if(!osName.contains("Windows 11"))
-            redirectToStandardOutput(findStrProcess, charset);
+            redirectToStandardOutput(sortProcess, charset);
 
     } catch (IOException e) {
         System.err.println("Error iniciando el proceso: " + e.getMessage());
